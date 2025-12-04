@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.musicstore.controllers.MainController" spacing="10" style="-fx-padding: 15;">
+
+    <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0;">
+        <VBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="mainTitleLabel" text="Музыкальный магазин" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <Label fx:id="userEmailLabel" text="Пользователь: " style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+        </VBox>
+    </HBox>
+
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <!-- Все данные -->
+        <Tab text="Все данные">
+            <ScrollPane fitToWidth="true" fitToHeight="true" vbarPolicy="AS_NEEDED" hbarPolicy="AS_NEEDED">
+                <VBox spacing="15" style="-fx-padding: 10;">
+                    <HBox spacing="20" alignment="TOP_LEFT">
+                        <!-- Левая часть - таблицы (увеличенная ширина) -->
+                        <VBox spacing="15" prefWidth="950">
+                            <!-- Ансамбли -->
+                            <VBox spacing="5">
+                                <Label text="Ансамбли" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <TextField fx:id="ensembleName" promptText="Название" prefWidth="140"/>
+                                    <TextField fx:id="ensembleType" promptText="Тип" prefWidth="110"/>
+                                    <TextField fx:id="ensembleDesc" promptText="Описание" prefWidth="180"/>
+                                    <Button text="Добавить" onAction="#addEnsemble" prefWidth="110"/>
+                                    <Button text="Редактировать" onAction="#editEnsemble" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="120"/>
+                                    <Button text="Удалить" onAction="#deleteEnsemble" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="100"/>
+                                </HBox>
+                                <ScrollPane fitToWidth="true" prefHeight="300">
+                                    <TableView fx:id="ensemblesTable">
+                                        <columns>
+                                            <TableColumn text="Название" prefWidth="250"/>
+                                            <TableColumn text="Тип" prefWidth="150"/>
+                                            <TableColumn text="Описание" prefWidth="550"/>
+                                        </columns>
+                                    </TableView>
+                                </ScrollPane>
+                            </VBox>
+
+                            <!-- Музыканты -->
+                            <VBox spacing="5">
+                                <Label text="Музыканты" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <TextField fx:id="musicianFirstName" promptText="Имя" prefWidth="120"/>
+                                    <TextField fx:id="musicianMiddleName" promptText="Отчество" prefWidth="120"/>
+                                    <TextField fx:id="musicianLastName" promptText="Фамилия" prefWidth="120"/>
+                                    <TextField fx:id="musicianBio" promptText="Биография" prefWidth="150"/>
+                                    <Button text="Добавить" onAction="#addMusician" prefWidth="110"/>
+                                    <Button text="Редактировать" onAction="#editMusician" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="120"/>
+                                    <Button text="Удалить" onAction="#deleteMusician" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="100"/>
+                                </HBox>
+                                <ScrollPane fitToWidth="true" prefHeight="300">
+                                    <TableView fx:id="musiciansTable">
+                                        <columns>
+                                            <TableColumn text="Имя" prefWidth="120"/>
+                                            <TableColumn text="Отчество" prefWidth="120"/>
+                                            <TableColumn text="Фамилия" prefWidth="120"/>
+                                            <TableColumn text="Биография" prefWidth="590"/>
+                                        </columns>
+                                    </TableView>
+                                </ScrollPane>
+                            </VBox>
+
+                            <!-- Произведения -->
+                            <VBox spacing="5">
+                                <Label text="Произведения" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <TextField fx:id="compositionTitle" promptText="Название" prefWidth="200"/>
+                                    <TextField fx:id="compositionYear" promptText="Год" prefWidth="80"/>
+                                    <Button text="Добавить" onAction="#addComposition" prefWidth="110"/>
+                                    <Button text="Редактировать" onAction="#editComposition" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="120"/>
+                                    <Button text="Удалить" onAction="#deleteComposition" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="100"/>
+                                </HBox>
+                                <ScrollPane fitToWidth="true" prefHeight="300">
+                                    <TableView fx:id="compositionsTable">
+                                        <columns>
+                                            <TableColumn text="Название" prefWidth="650"/>
+                                            <TableColumn text="Год" prefWidth="100"/>
+                                        </columns>
+                                    </TableView>
+                                </ScrollPane>
+                            </VBox>
+
+                            <!-- Пластинки -->
+                            <VBox spacing="5">
+                                <Label text="Пластинки" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <TextField fx:id="recordTitle" promptText="Название" prefWidth="150"/>
+                                    <TextField fx:id="recordWholesalePrice" promptText="Опт" prefWidth="80"/>
+                                    <TextField fx:id="recordRetailPrice" promptText="Розница" prefWidth="80"/>
+                                    <TextField fx:id="recordDiscs" promptText="Диски" prefWidth="60"/>
+                                    <Button text="Добавить" onAction="#addRecord" prefWidth="110"/>
+                                    <Button text="Редактировать" onAction="#editRecord" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="120"/>
+                                    <Button text="Удалить" onAction="#deleteRecord" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="100"/>
+                                </HBox>
+                                <ScrollPane fitToWidth="true" prefHeight="300">
+                                    <TableView fx:id="recordsTable">
+                                        <columns>
+                                            <TableColumn text="Название" prefWidth="200"/>
+                                            <TableColumn text="Опт" prefWidth="100"/>
+                                            <TableColumn text="Розница" prefWidth="100"/>
+                                            <TableColumn text="Диски" prefWidth="80"/>
+                                            <TableColumn text="Продажи" prefWidth="100"/>
+                                            <TableColumn text="Остаток" prefWidth="100"/>
+                                        </columns>
+                                    </TableView>
+                                </ScrollPane>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Правая часть - детали записи (уменьшенная ширина) -->
+                        <VBox spacing="10" prefWidth="400" style="-fx-padding: 15; -fx-background-color: #f8f9fa; -fx-border-color: #ddd; -fx-border-radius: 5;">
+                            <Label text="Детали записи" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+                            <!-- Область для изображения -->
+                            <VBox spacing="5">
+                                <Label text="Изображение:" style="-fx-font-weight: bold;"/>
+                                <ImageView fx:id="detailImageView" fitWidth="370" fitHeight="200" preserveRatio="true"
+                                           style="-fx-border-color: #ccc; -fx-border-radius: 5; -fx-background-color: white;"/>
+                                <HBox spacing="10" alignment="CENTER">
+                                    <Button text="Добавить" onAction="#addImage" prefWidth="100"/>
+                                    <Button text="Обновить" onAction="#reloadImages" prefWidth="100"
+                                            style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+                                    <Button text="Удалить" onAction="#removeImage" prefWidth="100"
+                                            style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Заголовок -->
+                            <VBox spacing="5">
+                                <Label text="Заголовок:" style="-fx-font-weight: bold;"/>
+                                <Label fx:id="detailTitleLabel" text="Выберите запись для просмотра деталей"
+                                       style="-fx-font-weight: bold; -fx-wrap-text: true;" wrapText="true"
+                                       prefWidth="370"/>
+                            </VBox>
+
+                            <!-- Описание -->
+                            <VBox spacing="5">
+                                <Label text="Описание:" style="-fx-font-weight: bold;"/>
+                                <ScrollPane fitToWidth="true" prefHeight="400">
+                                    <TextArea fx:id="detailDescriptionArea" prefWidth="350"
+                                              editable="false" wrapText="true"
+                                              style="-fx-background-color: white; -fx-border-color: #ccc;"/>
+                                </ScrollPane>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- Остальные вкладки (без изменений) -->
+        <Tab text="Состав ансамблей">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <Label text="Добавление музыкантов в ансамбли" style="-fx-font-weight: bold;"/>
+                <HBox spacing="5">
+                    <ComboBox fx:id="ensembleSelector" promptText="Ансамбль" prefWidth="200"/>
+                    <ComboBox fx:id="musicianSelector" promptText="Музыкант" prefWidth="200"/>
+                    <TextField fx:id="memberRole" promptText="Роль" prefWidth="120"/>
+                    <Button text="Добавить в ансамбль" onAction="#addEnsembleMember" prefWidth="140"/>
+                    <Button text="Редактировать" onAction="#editEnsembleMember" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="110"/>
+                    <Button text="Удалить" onAction="#deleteEnsembleMember" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="80"/>
+                </HBox>
+                <Label text="Текущий состав ансамблей:" style="-fx-font-weight: bold;"/>
+                <ScrollPane fitToWidth="true" prefHeight="400">
+                    <TableView fx:id="ensembleMembersTable">
+                        <columns>
+                            <TableColumn text="Ансамбль" prefWidth="200"/>
+                            <TableColumn text="Музыкант" prefWidth="200"/>
+                            <TableColumn text="Роль" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+            </VBox>
+        </Tab>
+
+        <!-- Исполнения -->
+        <Tab text="Исполнения">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <Label text="Добавление произведений в репертуар ансамблей" style="-fx-font-weight: bold;"/>
+                <HBox spacing="5">
+                    <ComboBox fx:id="performanceEnsembleSelector" promptText="Ансамбль" prefWidth="200"/>
+                    <ComboBox fx:id="performanceCompositionSelector" promptText="Произведение" prefWidth="200"/>
+                    <TextField fx:id="arrangementField" promptText="Аранжировка" prefWidth="150"/>
+                    <Button text="Добавить исполнение" onAction="#addPerformance" prefWidth="140"/>
+                    <Button text="Редактировать" onAction="#editPerformance" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="110"/>
+                    <Button text="Удалить" onAction="#deletePerformance" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="80"/>
+                </HBox>
+                <Label text="Текущие исполнения:" style="-fx-font-weight: bold;"/>
+                <ScrollPane fitToWidth="true" prefHeight="400">
+                    <TableView fx:id="performancesTable">
+                        <columns>
+                            <TableColumn text="Ансамбль" prefWidth="200"/>
+                            <TableColumn text="Композиция" prefWidth="200"/>
+                            <TableColumn text="Аранжировка" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+            </VBox>
+        </Tab>
+
+        <!-- Треки на пластинках -->
+        <Tab text="Треки на пластинках">
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <Label text="Добавление произведений на пластинки" style="-fx-font-weight: bold;"/>
+                <HBox spacing="5">
+                    <ComboBox fx:id="trackRecordSelector" promptText="Пластинка" prefWidth="200"/>
+                    <ComboBox fx:id="trackCompositionSelector" promptText="Произведение" prefWidth="200"/>
+                    <TextField fx:id="trackNumberField" promptText="Номер трека" prefWidth="80"/>
+                    <Button text="Добавить трек" onAction="#addRecordTrack" prefWidth="110"/>
+                    <Button text="Редактировать" onAction="#editRecordTrack" style="-fx-background-color: #ffa500; -fx-text-fill: white;" prefWidth="110"/>
+                    <Button text="Удалить" onAction="#deleteRecordTrack" style="-fx-background-color: #ff4444; -fx-text-fill: white;" prefWidth="80"/>
+                </HBox>
+                <Label text="Текущие треки на пластинках:" style="-fx-font-weight: bold;"/>
+                <ScrollPane fitToWidth="true" prefHeight="400">
+                    <TableView fx:id="recordTracksTable">
+                        <columns>
+                            <TableColumn text="Пластинка" prefWidth="200"/>
+                            <TableColumn text="Композиция" prefWidth="200"/>
+                            <TableColumn text="Трек" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+            </VBox>
+        </Tab>
+
+        <!-- Аналитика -->
+        <Tab text="Аналитика">
+            <ScrollPane>
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <Label text="Аналитика и статистика" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+                    <VBox spacing="5">
+                        <Label text="Тип анализа:" style="-fx-font-weight: bold;"/>
+                        <HBox spacing="10">
+                            <ComboBox fx:id="analyticsSelector" prefWidth="300" onAction="#onAnalyticsSelectionChanged"/>
+                            <Button text="Обновить аналитику" onAction="#loadAnalyticsData" prefWidth="150"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Поиск по ансамблю:" style="-fx-font-weight: bold;"/>
+                        <HBox spacing="10">
+                            <TextField fx:id="searchEnsembleField" promptText="Название ансамбля" prefWidth="200"/>
+                            <Button text="Найти произведения" onAction="#searchEnsembleCompositions" prefWidth="150"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Обновление продаж:" style="-fx-font-weight: bold;"/>
+                        <HBox spacing="10">
+                            <ComboBox fx:id="recordSelector" promptText="Пластинка" prefWidth="250"/>
+                            <TextField fx:id="salesUpdateField" promptText="Кол-во продаж" prefWidth="100"/>
+                            <Button text="Обновить продажи" onAction="#updateSales" prefWidth="130"/>
+                            <Button text="Лидеры продаж" onAction="#showSalesLeaders" prefWidth="120"/>
+                        </HBox>
+                    </VBox>
+
+                    <TextArea fx:id="resultArea" prefHeight="80" wrapText="true" style="-fx-font-family: 'Monospaced'; -fx-font-size: 12;"/>
+
+                    <Label text="Результаты анализа:" style="-fx-font-weight: bold;"/>
+                    <ScrollPane fitToWidth="true" prefHeight="300">
+                        <TableView fx:id="analyticsTable">
+                            <columns>
+                                <TableColumn text="Пластинка" prefWidth="180"/>
+                                <TableColumn text="Ансамбль" prefWidth="180"/>
+                                <TableColumn text="Треков" prefWidth="80"/>
+                                <TableColumn text="Длительность" prefWidth="100"/>
+                                <TableColumn text="Музыкантов" prefWidth="100"/>
+                                <TableColumn text="Продажи" prefWidth="100"/>
+                                <TableColumn text="Выручка" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+                    </ScrollPane>
+
+                    <Label text="Лидеры продаж:" style="-fx-font-weight: bold;"/>
+                    <ScrollPane fitToWidth="true" prefHeight="200">
+                        <TableView fx:id="salesLeadersTable">
+                            <columns>
+                                <TableColumn text="Название" prefWidth="200"/>
+                                <TableColumn text="Продажи" prefWidth="100"/>
+                                <TableColumn text="Цена" prefWidth="100"/>
+                                <TableColumn text="Остаток" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+                    </ScrollPane>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- История действий пользователя -->
+        <Tab fx:id="userActionsTab" text="История действий">
+            <!-- Содержимое будет загружено динамически -->
+        </Tab>
+    </TabPane>
+
+    <!-- В конце файла, после существующих кнопок -->
+    <HBox spacing="10">
+        <Button text="Обновить все данные" onAction="#refreshAllData" prefWidth="140"/>
+        <Button text="Очистить все поля" onAction="#clearAllFields" prefWidth="130"/>
+        <Button text="Выйти" onAction="#handleLogout" prefWidth="80"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

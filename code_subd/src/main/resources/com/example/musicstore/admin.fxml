@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.musicstore.controllers.AdminController"
+      spacing="20" alignment="CENTER" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+
+    <Label text="Регистрация администратора" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 5;">
+        <VBox spacing="5">
+            <Label text="ФИО:"/>
+            <TextField fx:id="fullNameField" promptText="Введите полное имя"/>
+            <Label fx:id="fullNameError" style="-fx-text-fill: red;" visible="false"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Email:"/>
+            <TextField fx:id="emailField" promptText="Введите email"/>
+            <Label fx:id="emailError" style="-fx-text-fill: red;" visible="false"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Телефон:"/>
+            <TextField fx:id="phoneField" promptText="Введите телефон"/>
+            <Label fx:id="phoneError" style="-fx-text-fill: red;" visible="false"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Пароль:"/>
+            <PasswordField fx:id="passwordField" promptText="Введите пароль"/>
+            <Label fx:id="passwordError" style="-fx-text-fill: red;" visible="false"/>
+        </VBox>
+
+        <VBox spacing="5">
+            <Label text="Подтверждение пароля:"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Повторите пароль"/>
+            <Label fx:id="confirmPasswordError" style="-fx-text-fill: red;" visible="false"/>
+        </VBox>
+
+        <Button fx:id="registerButton" text="Зарегистрировать" onAction="#handleRegister"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </VBox>
+</VBox>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.musicstore.controllers.UserActionsController"
+      spacing="10" style="-fx-padding: 15;">
+
+    <Label text="История действий пользователя" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Email пользователя:"/>
+        <Label fx:id="currentUserEmailLabel" text="Не указан" style="-fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Фильтр по действию:"/>
+        <ComboBox fx:id="actionTypeFilter" prefWidth="150"/>
+        <Label text="Период:"/>
+        <DatePicker fx:id="startDatePicker" promptText="С даты"/>
+        <DatePicker fx:id="endDatePicker" promptText="По дату"/>
+        <Button text="Применить фильтр" onAction="#applyFilter"/>
+        <Button text="Сбросить фильтр" onAction="#resetFilter"/>
+        <Button text="Обновить данные" onAction="#refreshData"/>
+    </HBox>
+
+    <Label text="Всего действий: " fx:id="totalActionsLabel" style="-fx-font-weight: bold;"/>
+
+    <TableView fx:id="actionsTable" prefHeight="400">
+        <columns>
+            <TableColumn text="Дата и время" prefWidth="150"/>
+            <TableColumn text="Действие" prefWidth="120"/>
+            <TableColumn text="Тип сущности" prefWidth="120"/>
+            <TableColumn text="Детали" prefWidth="250"/>
+            <TableColumn text="IP адрес" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="Экспорт в CSV" onAction="#exportToCsv"/>
+        <Button text="Очистить историю" onAction="#clearHistory" style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
+    </HBox>
+
+</VBox>
